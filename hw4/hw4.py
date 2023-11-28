@@ -204,7 +204,7 @@ class nn_convolutional_layer:
 
         for i in range(out_ch_size):
             filt = self.W[i,:,:,:].reshape((-1,1))
-            y = view_as_windows(x,(batch_size,in_ch_size,filter_width,filter_height)).reshape((out_width,out_height,batch_size,-1))
+            y = view_as_windows(x,(batch_size,in_ch_size,f_width,f_height)).reshape((out_width,out_height,batch_size,-1))
             result = torch.matmul(y,filt).squeeze().transpose(0,2).transpose(1,2)
             out[:,i,:,:] = result + self.b[0,i,0,0]
         
